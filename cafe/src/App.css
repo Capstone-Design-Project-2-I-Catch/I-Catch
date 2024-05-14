@@ -5,6 +5,7 @@ body{
 
 .App {
   height: 100vh;
+  overflow: hidden; /* 내용이 넘치더라도 스크롤을 표시하지 않음 */
 }
 
 .ibm-plex-sans-kr-extralight {
@@ -31,47 +32,98 @@ body{
   font-style: normal;
 }
 
-.brand {
-  color: #00594F;
-  font-weight: bold;
+.bar {
+  background-color: gainsboro; /* Navbar의 전체 배경색을 그레이로 설정 */
+}
+
+.nav {
+  align-items: center; /* 세로 중앙 정렬을 위해 align-items 속성 추가 */
   font-size: xx-large;
 }
 
+.d-inline-block {
+  border: 2px solid white;
+  border-radius: 10px;
+  background-color: white; /* 로고 이미지의 바탕을 흰색으로 설정 */
+  margin-right: 10px; /* 로고 이미지와 주문하기 텍스트 사이의 간격을 조정 */
+  padding: 2px;
+}
 
 .content {
   flex: 1;
   display: flex;
+  max-height: calc(100vh - 100px - 100px); 
 }
 
-.blank1{
-  flex: 0.5;
-}
 .menu {
-  flex: 6.5;
-  background-color: lightgray;
+  flex: 0.7;
 }
 
-.row2{
-  padding-top: 50px;
-}
-
-.cart {
-  flex: 3;
-  background-color: lightblue;
+.cart{
+  flex: 0.3;
+  overflow-y: auto;
 }
 
 .list {
-  padding-left: 20px;
-  text-align: left;
-  border-bottom: 1px solid grey;
+  padding: 5px; /* 리스트 항목의 내부 여백 추가 */
+  margin-bottom: 5px; /* 리스트 항목 간의 하단 여백 추가 */
+  border-bottom: 3px solid #ddd; /* 리스트 항목 간의 구분선 추가 */
 }
 
-.modal{
-  margin-top: 20px;
-  padding: 20px;
-  background: #eee;
-  text-align: left;
+.cart .list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
+.cart .title,
+.cart .price {
+  flex: 1; /* title과 price가 동일한 너비를 가지도록 설정 */
+}
+
+.title {
+  font-size: 27px;
+}
+
+.price{ 
+  font-size: 20px;
+}
+
+.total {
+  display: flex;
+  align-items: center; /* 요소들을 세로 중앙 정렬합니다. */
+}
+
+.total button {
+  margin: 5px; /* 버튼 사이의 간격을 조정합니다. */
+}
+
+.total .cnt {
+  font-size: 27px; /* 원하는 폰트 크기로 설정합니다. */
+}
+
+.cart .cnt {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.cart .cnt button {
+  margin: 0 5px; /* 버튼들 간의 간격을 조정 */
+}
+
+.cart .ibm-plex-sans-kr-bold,
+.cart .ibm-plex-sans-kr-regular {
+  margin-bottom: 2.5px; /* title과 price의 마진을 조절 */
+}
+
+.row2{
+  padding-top: 20px;
+}
+
+
+
+
 
 .App-logo {
   height: 40vmin;
@@ -108,28 +160,77 @@ body{
   }
 }
 
+.pay {
+  position: fixed; /* 결제하기 버튼을 화면에 고정시킵니다. */
+  bottom: 35px; /* 화면 하단에서의 거리를 조절합니다. */
+  font-size: 35px;
+  color: #3c3c3c;
+  text-transform: uppercase;
+  padding: 15px 100px;
+  background: #DDDDDD;
+  border: 2px solid #555555;
+  border-radius: 10px;
+  transform-style: preserve-3d;
+  transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1);
+  margin-top: 2%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  width: 95%;
+}
+
+.pay::before {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #808080;
+  border-radius: inherit;
+  box-shadow: 0 0 0 2px #808080, 0 0.425em 0 0 white;
+  transform: translate3d(0, 0.5em, -1em);
+  transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+}
+.pay:hover {
+  background: #777777;
+  border: 2px solid #555555;
+  transform: translate(0, 0.25em);
+}
+.pay:hover::before {
+  box-shadow: 0 0 0 2px #555555, 0 0.3em 0 0 white;
+  transform: translate3d(0, 0.3em, -1em);
+}   
+.pay:active {
+  background: #777777;
+  transform: translate(0em, 0.75em);
+}
+.pay:active::before {
+  box-shadow: 0 0 0 2px #555555, 0 0 white;
+  transform: translate3d(0, 0, -1em);
+}
+
 button {
-  position: relative;
   cursor: pointer;
   outline: none;
   border: 0;
   vertical-align: middle;
   text-decoration: none;
-  font-size: inherit;
-  font-family: inherit;
 }
 
 button.btn {
   font-size: xx-large;
-  color: #382b22;
+  color: #3c3c3c;
   text-transform: uppercase;
-  padding: 10px 120px;
+  padding: 1px 100px;
   background: #00a693;
   border: 2px solid #00594F;
   border-radius: 10px;
   transform-style: preserve-3d;
   transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1);
 }
+
 button.btn::before {
   position: absolute;
   content: '';
@@ -142,9 +243,10 @@ button.btn::before {
   background: #007B6D;
   border-radius: inherit;
   box-shadow: 0 0 0 2px #00594F, 0 0.425em 0 0 #dafff1;
-  transform: translate3d(0, 0.75em, -1em);
+  transform: translate3d(0, 0.5em, -1em);
   transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
 }
+
 button.btn:hover {
   background: #008d7d;
   border: 2px solid #00594F;
@@ -152,7 +254,7 @@ button.btn:hover {
 }
 button.btn:hover::before {
   box-shadow: 0 0 0 2px #00594F, 0 0.3em 0 0 #dafff1;
-  transform: translate3d(0, 0.5em, -1em);
+  transform: translate3d(0, 0.3em, -1em);
 }   
 button.btn:active {
   background: #008d7d;
@@ -162,5 +264,3 @@ button.btn:active::before {
   box-shadow: 0 0 0 2px #00594F, 0 0 #dafff1;
   transform: translate3d(0, 0, -1em);
 }
-
-

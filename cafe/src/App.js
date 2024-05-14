@@ -12,7 +12,6 @@ function App() {
   let [shoes] = useState(data);
   let [ids] = useState([0, 1, 2, 3, 4, 5]);
   let [제품수, 제품수변경] = useState([0, 0, 0, 0, 0, 0]);
-  let [modal, setModal] = useState(false);
   let [장바구니상품, set장바구니상품] = useState([]);
 
   const handleAddToCart = (index) => {
@@ -52,26 +51,25 @@ function App() {
 
   return (
     <div className="app">
-      <Navbar className="bg-body-tertiary">
-        <Container>
-          <Navbar.Brand className="brand ibm-plex-sans-kr-bold" href="#home">
-            <img
+    <Navbar className='bar'>
+      <Container>
+        <Navbar.Brand className='nav ibm-plex-sans-kr-bold' href="#home">
+          <img className='d-inline-block'
               alt=""
               src={logo}
               width="40"
               height="40"
-              className="d-inline-block align-top" 
-            />{' '}
-            주문하기
+            />
+            I-Catch
           </Navbar.Brand>
-        </Container>
-      </Navbar>
+        <Navbar.Brand className='nav ibm-plex-sans-kr-bold' href="#home">
+          장바구니
+        </Navbar.Brand>
+      </Container>
+    </Navbar>
 
       <div className="content">
-
-        <div className="blank1">공백</div>
-
-        <div className="menu">메뉴
+        <div className="menu">
           <Container>
             <Row Row md={3}>
                 {shoes.slice(0, 3).map((shoe, i) => (
@@ -87,32 +85,31 @@ function App() {
             </Row>
           </Container>
         </div>
-
-        <div className="cart">장바구니
-        {장바구니상품.map((product, index) => (
-          <div key={index}>
-            <p className='ibm-plex-sans-kr-bold'>{product.title}</p>
-            <p className='ibm-plex-sans-kr-regular '>{product.price}</p>
-            <p className='ibm-plex-sans-kr-semibold'>
-
-              <button onClick={() => handleIncreaseQuantity(index)}>
-                <FontAwesomeIcon icon={faPlus} size="xl" style={{color: "#003731"}} />
-              </button>
-              <h className='cnt ibm-plex-sans-kr-bold'>
-              {product.count}
-              </h>
-              <button button onClick={() => handleDecreaseQuantity(index)}>
-                <FontAwesomeIcon icon={faMinus} size="xl" style={{color: "#003731"}} />
-              </button>
-
-            </p>
+        <div className="cart">
+          {장바구니상품.map((product, index) => (
+            <div className='list' key={index}>
+              <div>
+                <p className='title ibm-plex-sans-kr-bold'>{product.title}</p>
+                <p className='price ibm-plex-sans-kr-regular '>{product.price}</p>
+              </div>
+              <div>
+                <p className='total ibm-plex-sans-kr-semibold'>
+                  <button onClick={() => handleDecreaseQuantity(index)}>
+                    <FontAwesomeIcon icon={faMinus} size="3x" style={{color: "#003731"}} />
+                  </button>
+                  <h className='cnt ibm-plex-sans-kr-bold'>
+                    { product.count }
+                  </h>
+                  <button onClick={() => handleIncreaseQuantity(index)}>
+                    <FontAwesomeIcon icon={faPlus} size="3x" style={{color: "#003731"}} />
+                  </button>
+                </p>
+              </div>
+            </div>
+           ))}
           </div>
-          ))}
-        </div>
       </div>
-
-      <button className="navbar">결제하기</button>
-
+      <button className="pay ibm-plex-sans-kr-bold">결제하기</button>  
     </div>
   );
 }
@@ -126,11 +123,13 @@ function Card({ shoes, index, onAddToCart }) {
   };
 
   return (
-    <div className="col-md-4">
-      <img src="https://codingapple1.github.io/shop/shoes1.jpg" alt={shoes.title} width="80%" />
-      <h4 className='ibm-plex-sans-kr-semibold'>{shoes.title}</h4>
-      <p className='ibm-plex-sans-kr-regular '>{shoes.price}</p>
-      <button className="btn ibm-plex-sans-kr-bold" onClick={handleClick}> 담기 </button>
+    <div className="col-md-4" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start'}}>
+      <img src="https://codingapple1.github.io/shop/shoes1.jpg" alt={shoes.title}  style={{ width: '240px' }} />
+      <div style={{ textAlign: 'left', width: '200px' }}> 
+        <h4 className='title ibm-plex-sans-kr-bold' style={{ marginTop: '10px' }}>{shoes.title}</h4> {/* 왼쪽 여백을 제거하여 왼쪽 끝에서 시작 */}
+        <p className='price ibm-plex-sans-kr-semibold'>{shoes.price}</p> 
+      </div>
+      <button className="btn ibm-plex-sans-kr-bold" style={{ width: '240px', alignItems: 'center', padding: '10px' }} onClick={handleClick}> 담기 </button>
     </div>
   );
 }

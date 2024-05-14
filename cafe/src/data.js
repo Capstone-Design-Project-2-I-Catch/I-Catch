@@ -15,7 +15,7 @@ let data = [
   
     {
       id : 2,
-      title : "ICE 아이스티",
+      title : "ICE 카페모카",
       content : "Born in the States",
       price : 130000
     },
