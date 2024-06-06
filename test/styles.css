@@ -1,0 +1,50 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+
+.menu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 300px; /* 열 간의 간격 크게 설정 */
+    row-gap: 300px; /* 행 간의 간격 크게 설정 */
+    width: 90%; /* 메뉴 폭 조정 */
+    height: 90%; /* 메뉴 높이 조정 */
+    margin: auto;
+}
+
+.menu-item {
+    border: 1px solid #ccc;
+    padding: 10px; /* 패딩 감소 */
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    outline: none;
+}
+
+.menu-item img {
+    width: 120px; /* 이미지 폭 증가 */
+    height: 120px; /* 이미지 높이 증가 */
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.menu-item p {
+    margin: 10px 0 0;
+    font-size: 16px; /* 글자 크기 증가 */
+}
+
+.menu-item:hover {
+    background-color: #f0f0f0;
+}
+
+.menu-item:active {
+    background-color: #e0e0e0;
+}
