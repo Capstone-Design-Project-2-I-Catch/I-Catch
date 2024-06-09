@@ -136,9 +136,7 @@ function App() {
                 </p>
               </div>
             )}
-          </div>
-        </div>
-        <div className='nav'>
+                    <div className='nav'>
           <button className="pay ibm-plex-sans-kr-bold" onClick={handleButtonClick}>결제하기</button>
           {showModal && (
             <Modal onClose={handleCloseModal}>
@@ -151,6 +149,9 @@ function App() {
             </Modal>
           )}
         </div>
+          </div>
+        </div>
+
       </div>
     </div>
   );
